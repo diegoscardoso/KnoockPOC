@@ -1,0 +1,29 @@
+﻿@{
+    ViewData["Title"] = "Status do Pedido";
+}
+<h1>Status do Pedido</h1>
+
+<div id="statusArea">
+    <p>Aguardando atualização...</p>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/@@microsoft/signalr@7.0.5/dist/browser/signalr.min.js"></script>
+<script>
+    const connection = new signalR.HubConnectionBuilder()
+        .withUrl("https://localhost:7042/deliveryHub?affiliateID=1")
+        .build();
+
+    connection.on("ReceiveDeliveryNotification", (deliveryID, status) => {
+       processPendingDelivery(deliveryID, status);
+    });
+
+    connection.start()
+        .then(() => console.log("Conectado ao SignalR Hub"))
+        .catch(err => console.error("Erro ao conectar:", err));
+
+    function processPendingDelivery(deliveryID, status){
+        // replace for a real processing implementation */
+        const statusArea = document.getElementById("statusArea");
+        statusArea.innerHTML = `<p>Pedido: <b>${deliveryID}</b> </br>Status: <b>${status}</b> </p>`;
+    }
+</script>

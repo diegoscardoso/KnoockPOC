@@ -1,0 +1,10 @@
+@API_HostAddress = http://localhost:5164
+
+POST {{API_HostAddress}}/change-delivery-status
+Content-Type: application/json
+{
+  "deliveryID": "e1f94b30-9c8a-4baf-a20e-0f89faeaf823",
+  "status": 1
+}
+
+###

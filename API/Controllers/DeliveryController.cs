@@ -6,7 +6,6 @@ using Microsoft.AspNetCore.SignalR;
 
 namespace API.Controllers
 {
-
     public class DeliveryController : Controller
     {
         private readonly IHubContext<DeliveryHub> _deliveryHubContext;
@@ -26,7 +25,7 @@ namespace API.Controllers
         [HttpPost]
         public IActionResult ChangeDeliveryStatus(Guid deliveryID)
         {
-            // logic to change delivery Status
+            // implement the logic to change delivery Status
 
             return Json(new { Success = true, message = "Delivery Status Changed" });
         }

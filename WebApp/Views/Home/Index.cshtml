@@ -26,7 +26,7 @@
 
     function processPendingDelivery(deliveryID, status){
         const statusArea = document.getElementById("statusArea");
-        statusArea.innerHTML = `<p>Pedido: <b>${deliveryID}</b> </br>Status: <b>${status}</b></p>
+        statusArea.innerHTML = `<p>DeliveryID: <b>${deliveryID}</b> </br>Status: <b>${status}</b></p>
                                 <button id="acceptDeliveryButton">Accept Delivery</button>`;
         
         // Attach click event to the button after adding it to the DOM

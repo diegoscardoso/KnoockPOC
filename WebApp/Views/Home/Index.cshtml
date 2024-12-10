@@ -7,6 +7,9 @@
     <p>Aguardando atualização...</p>
 </div>
 
+<!-- Include jQuery -->
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
 <script src="https://cdn.jsdelivr.net/npm/@@microsoft/signalr@7.0.5/dist/browser/signalr.min.js"></script>
 <script>
     const connection = new signalR.HubConnectionBuilder()
@@ -22,8 +25,25 @@
         .catch(err => console.error("Erro ao conectar:", err));
 
     function processPendingDelivery(deliveryID, status){
-        // replace for a real processing implementation */
         const statusArea = document.getElementById("statusArea");
-        statusArea.innerHTML = `<p>Pedido: <b>${deliveryID}</b> </br>Status: <b>${status}</b> </p>`;
+        statusArea.innerHTML = `<p>Pedido: <b>${deliveryID}</b> </br>Status: <b>${status}</b></p>
+                                <button id="acceptDeliveryButton">Accept Delivery</button>`;
+        
+        // Attach click event to the button after adding it to the DOM
+        $('#acceptDeliveryButton').click(() => {
+            acceptDelivery(deliveryID);
+        });
+    }
+
+    function acceptDelivery(deliveryID) {
+        // Make a POST request to the endpoint
+        $.post("https://localhost:7042/change-delivery-status", { deliveryID: deliveryID })
+            .done(response => {
+                alert(response.message);
+            })
+            .fail(error => {
+                console.error("Error accepting delivery:", error);
+                alert("Failed to accept delivery. Please try again.");
+            });
     }
 </script>

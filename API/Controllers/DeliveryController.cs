@@ -24,9 +24,9 @@ namespace API.Controllers
 
         [Route("change-delivery-status")]
         [HttpPost]
-        public IActionResult ChangeDeliveryStatus(Guid deliveryID, DeliveryStatus status)
+        public IActionResult ChangeDeliveryStatus(Guid deliveryID)
         {
-            // logic to change delivery Statuses
+            // logic to change delivery Status
 
             return Json(new { Success = true, message = "Delivery Status Changed" });
         }
